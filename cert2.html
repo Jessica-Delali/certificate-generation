@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Insurance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 0;
+            margin: 0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+        }
+        
+        .container {
+            width: 250mm;
+            /* height: 297mm; */
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blue-header {
+            background: linear-gradient(90deg, #0066b2 0%, #0066b2 60%, rgba(0, 102, 178, 0.7) 100%);
+            height: 8px;
+            position: relative;
+        }
+        
+        .blue-header::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 150px;
+            height: 8px;
+            background: linear-gradient(135deg, transparent 50%, #87CEEB 50%);
+        }
+        
+        .main-content {
+            padding: 15px 25px;
+        }
+        
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 140px;
+        }
+        
+        .certificate-title {
+            text-align: right;
+        }
+        
+        .certificate-title h1 {
+            color: #0066b2;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 3px;
+        }
+        
+        .certificate-title h2 {
+            color: #0066b2;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+        
+        .qr-section {
+            text-align: center;
+            margin-top: 8px;
+        }
+        
+        .qr-code {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #333;
+            margin: 0 auto 5px;
+        }
+        
+        .qr-text {
+            color: #0066b2;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .section {
+            background: transparent;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 3px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+            background-color: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .info-row {
+            display: flex;
+            padding: 6px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 140px;
+            font-size: 11px;
+        }
+        
+        .info-value {
+            color: #555;
+            font-size: 11px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .coverage-box {
+            background: white;
+            padding: 12px;
+            border-radius: 3px;
+            margin-top: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .coverage-text {
+            color: #555;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+        
+        .family-list {
+            list-style: none;
+        }
+        
+        .family-list li {
+            padding: 6px 0;
+            color: #555;
+            font-size: 11px;
+        }
+        
+        .family-role {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .definition-text {
+            color: #555;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+        
+        .benefits-highlight {
+            background: white;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 3px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .benefit-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+        
+        .benefit-item {
+            margin: 8px 0;
+        }
+        
+        .benefit-amount {
+            font-weight: 700;
+            color: #333;
+            font-size: 11px;
+        }
+        
+        .benefit-description {
+            color: #555;
+            font-size: 10px;
+            margin-left: 5px;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 25px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .powered-by {
+            color: #0066b2;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer-logos {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            height: 60px;
+        }
+        
+        .blue-footer {
+            background: linear-gradient(90deg, #0066b2 0%, #0066b2 60%, rgba(0, 102, 178, 0.7) 100%);
+            height: 8px;
+            position: relative;
+        }
+        
+        .blue-footer::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 150px;
+            height: 8px;
+            background: linear-gradient(-45deg, transparent 50%, #87CEEB 50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="blue-header"></div>
+        
+        <div class="main-content">
+            <div class="header-section">
+                <img src="images/enterprise-insurance.png" alt="Enterprise Insurance" class="logo">
+                <div>
+                    <div class="certificate-title">
+                        <h1>CERTIFICATE</h1>
+                        <h2>OF INSURANCE</h2>
+                    </div>
+                    <div class="qr-section">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=ENT/2025/UJOFP9I0" alt="QR Code" class="qr-code">
+                        <div class="qr-text">Scan QR Code</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="two-column">
+                <div class="section">
+                    <h3 class="section-title">Policy Information</h3>
+                    <div class="info-row">
+                        <span class="info-label">Policy Number</span>
+                        <span class="info-value">ENT/2025/UJOFP9I0</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Insured Person(s)</span>
+                        <span class="info-value">John Bintu</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Effective Date</span>
+                        <span class="info-value">08/05/2025</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Expiry Date</span>
+                        <span class="info-value">09/05/2025</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Policy Type</span>
+                        <span class="info-value">Ekwan so Dwodwoo - Personal Accident Policy</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Policy Bought</span>
+                        <span class="info-value">Single & Family</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Underwriter</span>
+                        <span class="info-value">Enterprise Insurance</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">Coverage</h3>
+                    <div class="coverage-box">
+                        <p class="coverage-text">Protection against injury or death during intercity commercial travel.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="two-column">
+                <div class="section">
+                    <h3 class="section-title">Journey Details</h3>
+                    <div class="info-row">
+                        <span class="info-label">Travel Type</span>
+                        <span class="info-value">Intercity commercial vehicle</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Trip Type</span>
+                        <span class="info-value">Single trip only</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Travel Route</span>
+                        <span class="info-value">Accra to Tamale</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Trip Duration</span>
+                        <span class="info-value">9 hours</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Vehicle Number</span>
+                        <span class="info-value">GE-1233-23</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="section">
+                        <h3 class="section-title">Family</h3>
+                        <ul class="family-list">
+                            <li>Juliet Ibrahim Bintu <span class="family-role">(Wife)</span></li>
+                            <li>Asiedu Haruna Bintu <span class="family-role">(Son)</span></li>
+                            <li>Brukutu Zenabu Bintu <span class="family-role">(Daughter)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="two-column">
+                <div class="section">
+                    <h3 class="section-title">Definition of Accident</h3>
+                    <p class="definition-text">An accident is a sudden, unexpected, and visible event that happens while the policy is active, resulting in injury or death of the insured.</p>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">Benefits</h3>
+                    <div class="benefits-highlight">
+                        <div class="benefit-title">For only GHS 7, you can get:</div>
+                        <div class="benefit-item">
+                            <span class="benefit-amount">GHS 600</span>
+                            <span class="benefit-description">for outpatient treatment after a bus accident, no paperwork needed.</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-amount">GHS 2,000</span>
+                            <span class="benefit-description">to your beneficiary in case of accidental death.</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-amount">GHS 2,000</span>
+                            <span class="benefit-description">if you suffer permanent disability.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="two-column">
+                <div class="section">
+                    <h3 class="section-title">Emergency Contact</h3>
+                    <div class="info-row">
+                        <span class="info-label">Name</span>
+                        <span class="info-value">John Gbenga Bintu</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Phone Number</span>
+                        <span class="info-value">+233 123 123 412</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">Beneficiary</h3>
+                    <div class="info-row">
+                        <span class="info-label">Name</span>
+                        <span class="info-value">Juliet Gbenga Bintu</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Phone Number</span>
+                        <span class="info-value">+233 123 123 412</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">Pay-out Details</h3>
+                <div class="info-row">
+                    <span class="info-label">Mobile Money number</span>
+                    <span class="info-value">0269412609</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mobile Money network</span>
+                    <span class="info-value">AIRTELTIGO</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Calculated premium</span>
+                    <span class="info-value">GHS 7</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="powered-by">Powered by Redpear & Absa</div>
+            <div class="footer-logos">
+                <img src="images/redpear.png" alt="Redpear" class="footer-logo">
+                <img src="images/absa.png" alt="Absa" class="footer-logo">
+            </div>
+        </div>
+        
+        <div class="blue-footer"></div>
+    </div>
+</body>
+</html>
